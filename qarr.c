@@ -37,9 +37,9 @@ void dequeue(int *q,int n)
 		printf("Queue Empty\n");
 	else
 	{
-		printf("%d deleted\n",q[rear]);
-		q[rear]=-1;
-		rear--;
+		printf("%d deleted\n",q[front]);
+		q[front]=-1;
+		front++;
 		if(front>rear)
 		{
 			front=-1;
@@ -52,12 +52,11 @@ void dequeue(int *q,int n)
 void display(int *q,int n)
 {
 	int i,x;
-	x=rear;
 	if(isempty(n))
 		printf("Queue Empty\n");
 	else
 	{
-		for(i=0;i<=x;i++)
+		for(i=front;i<=rear;i++)
 			printf("| %d |\t",*(q+i));
 	}
 	printf("\n");
@@ -107,5 +106,3 @@ void main()
 		}
 	}
 }
-
-
