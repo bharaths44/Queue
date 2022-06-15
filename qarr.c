@@ -11,7 +11,7 @@ int isfull(int n)
 	
 int isempty(int n)
 {
-	if(front==rear)
+	if(front==-1)
 		return 1;
 	else
 		return 0;
@@ -20,7 +20,7 @@ int isempty(int n)
 void enqueue(int val,int *q,int n)
 {
 	if(isfull(n))
-		printf("\nQueue Full");
+		printf("Queue Full\n");
 	else
 	{
 		if(front==-1)
@@ -34,24 +34,33 @@ void enqueue(int val,int *q,int n)
 void dequeue(int *q,int n)
 {
 	if(isempty(n))
-		printf("\nQueue Empty\n");
+		printf("Queue Empty\n");
 	else
 	{
 		printf("%d deleted\n",q[rear]);
 		q[rear]=-1;
 		rear--;
+		if(front>rear)
+		{
+			front=-1;
+			rear=-1;
+		}
 	}
 }
 
 
-void display(int *q)
+void display(int *q,int n)
 {
 	int i,x;
 	x=rear;
-	for(i=0;i<=x;i++)
+	if(isempty(n))
+		printf("Queue Empty\n");
+	else
 	{
-		printf("| %d |\t",*(q+i));
+		for(i=0;i<=x;i++)
+			printf("| %d |\t",*(q+i));
 	}
+	printf("\n");
 }
 
 void main()
@@ -71,7 +80,7 @@ void main()
 	{
 			case 1 :
 				{
-					printf("\nEnter value to be inserted :");
+					printf("Enter value to be inserted :");
 					scanf("%d",&val);
 					enqueue(val,q,n);
 					printf("\n");
@@ -85,13 +94,13 @@ void main()
 			}
 			case 3:
 			{
-				display(q);
+				display(q,n);
 				printf("\n");
 				break;
 			}
 			case 4 :
 			{
-				printf("Thank you\n");
+				printf("Thank you ;)\n");
 				exit(0);
 				break;
 			}
